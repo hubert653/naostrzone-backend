@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naostrzone | Produkty</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="obrazy/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <header>
+        <div id="promo-bar" class="hidden">
+            Darmowa dostawa od 99 zł | Wysyłka w 24h
+        </div>
+        <div class="logo-container">
+            <img src="obrazy/favicon.png" alt="Logo sklepu" class="logo">
+            <span class="tagline">Naostrzone | Akcesoria dla twojej kuchni</span>
+            <div class="search-bar-container">
+                <form class="search-form" action="Produkty.html" method="GET">
+                    <input type="text" name="search" placeholder="Wyszukaj produkty" class="search-input">
+                    <button type="submit" class="search-button">Szukaj</button>
+                </form>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li id="account-link"><a href="Moje Konto.html">Moje Konto</a></li>
+                <li id="user-info" style="display: none;">
+                    <img src="obrazy/user-icon.png" alt="User Icon" class="user-icon">
+                    <span id="user-email"></span>
+                    <button id="logout-button" class="logout-button">Wyloguj</button>
+                </li>
+                <li><a href="Index.html">Strona Główna</a></li>
+                <li><a href="Kontakt.html">Kontakt</a></li>
+                <a href="Koszyk.html">
+                    <div class="cart">
+                        <i class="bi bi-cart2"></i>
+                        <div id="cartAmount" class="cartAmount">0</div>
+                    </div>
+                </a>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <i class="bi bi-moon-fill"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        
+    </header>
+
+    <main>
+        <button id="menu-button" class="menu-button">☰ Menu</button>
+        <div class="menu-overlay" id="menu-overlay">
+            <div class="menu-header">
+                <h2>Kategorie</h2>
+            </div>
+            <ul class="menu-items">
+                <li><a href="#" class="all-products">Wszystkie produkty</a></li>
+                <li><a href="#">Noże</a></li>
+                <li><a href="#">Garnki</a></li>
+                <li><a href="#">Talerze</a></li>
+                <li><a href="#">Miski</a></li>
+                <li><a href="#">Sztućce</a></li>
+                <li><a href="#">Przybory kuchenne</a></li>
+                <li><a href="#">Zestawy</a></li>
+                <li><a href="#">Patelnie</a></li>
+            </ul>
+        </div>
+        <br>
+        <h2>Wszystkie produkty</h2>
+        <br>
+        <div class="highlighted-section">
+            <div class="shop" id="shop">
+                <!-- Produkty będą generowane dynamicznie przez JavaScript -->
+            </div>
+        </div>
+        <script src="https://static.elfsight.com/platform/platform.js" async></script>
+        <div class="elfsight-app-127b93b1-c94d-4bff-b53a-c07a586ab75d" data-elfsight-app-lazy></div>
+    </main>
+
+<footer id="kontakt">
+        <section id="newsletter-bar">
+            <div class="newsletter-content">
+                <img src="obrazy/newsletter.gif" alt="Rabaty" class="newsletter-gif">
+                <div class="newsletter-text">
+                    <h2>Rabaty dla subskrybentów!</h2>
+                    <p>Zapisz sie na newsletter i otrzymuj najnowsze okazje!</p>
+                </div>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Twój e-mail *" required>
+                    <button type="submit">ZAPISZ MNIE DO ZNIŻEK</button>
+                </form>
+            </div>
+            <p class="newsletter-info">
+                Zapisujac sie na newsletter, zgadzasz sie na przetwarzanie Twoich danych osobowych w celu przesylania wiadomosci marketingowych i ofert promocyjnych.
+            </p>
+        </section>
+        <p>Kontakt: <a href="mailto:naostrzone@sklep.pl">naostrzone@sklep.pl</a> | Telefon: 536 248 284</p>
+    </footer>
+    <script src="main.js"></script>
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+    <script src="newsletter.js"></script>
+
+</body>
+</html>

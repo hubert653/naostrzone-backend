@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naostrzone | Produkt</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="obrazy/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+<body class="product-page">
+    <!-- Pionowy baner -->
+    <div class="sidebar-banner">
+    </div>
+
+    <header>
+        <div class="logo-container">
+            <img src="obrazy/favicon.png" alt="Logo sklepu" class="logo">
+            <span class="tagline">
+                <span class="tagline-part1">Naostrzone</span>
+                <span class="tagline-part2"> | Akcesoria dla twojej kuchni</span>
+            </span>
+        </div>
+        <div class="search-bar-container">
+            <form class="search-form" action="Produkty.html" method="GET">
+                <input type="text" name="search" placeholder="Wyszukaj produkty" class="search-input">
+                <button type="submit" class="search-button">Szukaj</button>
+            </form>
+        </div>
+        <nav>
+            <ul>
+                <li id="account-link"><a href="Moje Konto.html">Moje Konto</a></li>
+                <li id="user-info" style="display: none;">
+                    <img src="obrazy/user-icon.png" alt="User Icon" class="user-icon">
+                    <span id="user-email"></span>
+                    <button id="logout-button" class="logout-button">Wyloguj</button>
+                </li>
+                <li><a href="Index.html">Strona Główna</a></li>
+                <li><a href="Produkty.html">Produkty</a></li>
+                <a href="Koszyk.html">
+                    <div class="cart">
+                      <i class="bi bi-cart2"></i>
+                      <div id="cartAmount" class="cartAmount">0</div>
+                    </div>
+                </a>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <i class="bi bi-moon-fill"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="product-details">
+            <div class="product-info">
+                <h1 id="product-name"></h1>
+                <p id="product-description"></p><br>
+                <h2>Specyfikacja:</h2>
+                <div class="specification-box" id="product-specification"></div>
+                <br><p style="color: green; font-size: 24px;"><strong>Cena:</strong> <span id="product-price"></span> zł</p>
+                <p style="color: green;"><img src="obrazy/allegro-icon.png" alt="Allegro Icon" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 5px;">Gwarancja najniższej ceny</p><br>
+                <div class="action-buttons-row" id="button-container">
+                    <!-- Przyciski będą generowane dynamicznie przez JavaScript -->
+                </div>
+            </div>
+            <div class="product-image">
+                <img id="product-image" src="" alt="">
+                <div class="image-navigation" id="image-navigation"></div>
+            </div>
+        </div>
+
+        <section class="promo-bar">
+            <div id="promo-bar">
+                <p>Darmowa dostawa dla zamówień powyżej 100 zł!</p>
+            </div>
+        </section>
+
+        <section class="customer-reviews">
+            <h2>Opinie naszych klientów</h2>
+            <div class="reviews-container" id="reviews-container"></div>
+        </section>
+        <!-- Elfsight AI Chatbot | Naostrzone Chatbot -->
+        <script src="https://static.elfsight.com/platform/platform.js" async></script>
+        <div class="elfsight-app-127b93b1-c94d-4bff-b53a-c07a586ab75d" data-elfsight-app-lazy></div>
+    </main>
+
+    <footer id="kontakt">
+        <section id="newsletter-bar">
+            <div class="newsletter-content">
+                <img src="obrazy/newsletter.gif" alt="Rabaty" class="newsletter-gif">
+                <div class="newsletter-text">
+                    <h2>Rabaty dla subskrybentów!</h2>
+                    <p>Zapisz się na newsletter i otrzymuj najnowsze okazje!</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Twój e-mail *" required>
+                    <button type="submit">ZAPISZ MNIE DO ZNIŻEK</button>
+                </form>
+            </div>
+            <p class="newsletter-info">
+                Zapisując się na newsletter, zgadzasz się na przetwarzanie Twoich danych osobowych w celu przesyłania wiadomości marketingowych i ofert promocyjnych.
+            </p>
+        </section>
+        <p>Kontakt: <a href="mailto:naostrzone@sklep.pl">naostrzone@sklep.pl</a> | Telefon: 536 248 284</p>
+    </footer>
+<script>
+    async function loadProductDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        try {
+            const response = await fetch(`http://localhost:3000/api/products/${productId}`);
+            const product = await response.json();
+
+            // Wstawianie specyfikacji jako gotowy HTML
+            const specificationList = document.getElementById('specification');
+            specificationList.innerHTML = product.specification;
+
+            // Wstawianie opisu podzielonego na akapity
+            document.getElementById('description').innerHTML = formatDescription(product.description);
+
+            // Wstawianie pozostałych danych
+            document.getElementById('name').textContent = product.name;
+            document.getElementById('price').textContent = product.price.toFixed(2) + ' zł';
+            document.getElementById('product-image').src = product.img;
+        } catch (error) {
+            console.error('Błąd ładowania produktu:', error);
+        }
+    }
+
+    function formatDescription(description) {
+        const sentences = description.split('. ');
+        const sentencesPerParagraph = 3;
+        const paragraphs = [];
+        for (let i = 0; i < sentences.length; i += sentencesPerParagraph) {
+            const paragraphSentences = sentences.slice(i, i + sentencesPerParagraph).join('. ') + (i + sentencesPerParagraph < sentences.length ? '.' : '');
+            if (paragraphSentences.trim()) {
+                paragraphs.push(paragraphSentences);
+            }
+        }
+        return paragraphs.map(p => `<p>${p}</p>`).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', loadProductDetails);
+</script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+    <script src="main.js"></script>
+    <script src="newsletter.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get("id");
+
+            if (productId) {
+                fetch(`/api/products/${productId}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Błąd podczas pobierania produktu");
+                        }
+                        return response.json();
+                    })
+                    .then(product => {
+                        if (product && !product.error) {
+                            document.getElementById("product-name").textContent = product.name;
+                            document.getElementById("product-description").textContent = product.description;
+                            document.getElementById("product-price").textContent = product.price;
+                            document.getElementById("product-image").src = product.img;
+
+                            // Generowanie przycisków w rzędzie
+                            const buttonContainer = document.getElementById("button-container");
+                            buttonContainer.innerHTML = `
+                                <button class="product-action-button add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">
+                                    <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-cart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 13H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                    </svg>
+                                    Dodaj do koszyka
+                                </button>
+                                <button class="product-action-button buy-now" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">
+                                    <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-cart-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+                                        <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 12.5 11H4.707l1.5-1.5a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.854.354L2.467 8H.5a.5.5 0 0 1-.485-.379L0 6.5v-4zm1.5 0v-1h12v1H1.5zm3.5 9a.5.5 0 1 0 0 1h8a.5.5 0 1 0 0-1h-8z"/>
+                                    </svg>
+                                    Kup teraz
+                                </button>
+                                <button class="product-action-button add-to-wishlist" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}" data-img="${product.img}">
+                                    <svg width="24" height="24" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357a.5.5 0 0 0 .632 0c3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.837-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a.5.5 0 0 0 .708 0c.057-.059.116-.116.176-.171C12.72-3.042 23.333 4.867 8 15z"/>
+                                    </svg>
+                                    Dodaj do listy życzeń
+                                </button>
+                            `;
+
+                            // Dodanie obsługi przycisku "Dodaj do koszyka"
+                            const addToCartBtn = buttonContainer.querySelector(".add-to-cart");
+                            addToCartBtn.addEventListener("click", () => {
+                                const id = addToCartBtn.getAttribute("data-id");
+                                const name = addToCartBtn.getAttribute("data-name");
+                                const price = parseFloat(addToCartBtn.getAttribute("data-price"));
+                                let basket = JSON.parse(localStorage.getItem("data")) || [];
+                                let search = basket.find((x) => x.id === id);
+
+                                // Domyślna ilość to 1
+                                const quantity = 1;
+
+                                if (search === undefined) {
+                                    basket.push({
+                                        id: id,
+                                        item: quantity,
+                                        name: name,
+                                        price: price
+                                    });
+                                } else {
+                                    search.item += quantity;
+                                }
+
+                                localStorage.setItem("data", JSON.stringify(basket));
+                                updateCartIcon();
+                                showAddToCartMessage(`Dodano "${name}" do koszyka!`, true);
+                            });
+
+                            // Dodanie obsługi przycisku "Kup teraz"
+                            const buyNowBtn = buttonContainer.querySelector(".buy-now");
+                            buyNowBtn.addEventListener("click", () => {
+                                const id = buyNowBtn.getAttribute("data-id");
+                                const name = buyNowBtn.getAttribute("data-name");
+                                const price = parseFloat(buyNowBtn.getAttribute("data-price"));
+                                let basket = JSON.parse(localStorage.getItem("data")) || [];
+                                let search = basket.find((x) => x.id === id);
+
+                                // Domyślna ilość to 1
+                                const quantity = 1;
+
+                                if (search === undefined) {
+                                    basket.push({
+                                        id: id,
+                                        item: quantity,
+                                        name: name,
+                                        price: price
+                                    });
+                                } else {
+                                    search.item = quantity; // Nadpisz ilość na 1
+                                }
+
+                                localStorage.setItem("data", JSON.stringify(basket));
+                                updateCartIcon();
+                                window.location.href = "Koszyk.html";
+                            });
+
+                            // Dodanie obsługi przycisku "Dodaj do listy życzeń"
+                            const addToWishlistBtn = buttonContainer.querySelector(".add-to-wishlist");
+                            addToWishlistBtn.addEventListener("click", () => {
+                                const id = addToWishlistBtn.getAttribute("data-id");
+                                const name = addToWishlistBtn.getAttribute("data-name");
+                                const price = addToWishlistBtn.getAttribute("data-price");
+                                const img = addToWishlistBtn.getAttribute("data-img");
+                                let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+                                let search = wishlist.find((x) => x.id === id);
+
+                                if (search) {
+                                    showAddToCartMessage("Produkt już znajduje się na liście życzeń!", false);
+                                    return;
+                                }
+
+                                wishlist.push({
+                                    id: id,
+                                    name: name,
+                                    price: price,
+                                    img: img
+                                });
+
+                                localStorage.setItem("wishlist", JSON.stringify(wishlist));
+                                showAddToCartMessage(`Dodano "${name}" do listy życzeń!`, true);
+                            });
+
+                            document.getElementById("product-specification").innerHTML = product.specification || "<p>Brak specyfikacji.</p>";
+
+                            document.getElementById("image-navigation").innerHTML = `
+                                <button onclick="changeImage('${product.img}')">← Poprzedni</button>
+                                <button onclick="changeImage('${product.img2}')">Następny →</button>
+                            `;
+
+                            document.getElementById("reviews-container").innerHTML = `
+                                <div class="review-card">
+                                    <p class="review-text">"Nóż Santoku to najlepszy zakup, jaki zrobiłem w tym roku! Precyzyjny i wygodny."</p>
+                                    <p class="review-author">- Michał, Kraków</p>
+                                    <p class="review-rating">★★★★★</p>
+                                </div>
+                                <div class="review-card">
+                                    <p class="review-text">"Nie tylko praktyczny, ale też piękny. Świetna jakość wykonania!"</p>
+                                    <p class="review-author">- Anna, Gdańsk</p>
+                                    <p class="review-rating">★★★★★</p>
+                                </div>
+                                <div class="review-card">
+                                    <p class="review-text">"Polecam każdemu, kto ceni sobie jakość i styl w kuchni."</p>
+                                    <p class="review-author">- Paweł, Warszawa</p>
+                                    <p class="review-rating">★★★★★</p>
+                                </div>
+                            `;
+                        } else {
+                            document.querySelector(".product-info").innerHTML = "<p>Produkt nie znaleziony.</p>";
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Błąd podczas pobierania produktu:", error);
+                        document.querySelector(".product-info").innerHTML = "<p>Wystąpił błąd. Spróbuj ponownie później.</p>";
+                    });
+            } else {
+                document.querySelector(".product-info").innerHTML = "<p>Nie wybrano produktu.</p>";
+            }
+        });
+
+        function changeImage(imageSrc) {
+            document.getElementById("product-image").src = imageSrc;
+        }
+
+        function showAddToCartMessage(message, success = true) {
+            const messageDiv = document.createElement("div");
+            messageDiv.className = "add-to-cart-message";
+            messageDiv.textContent = message;
+            if (!success) {
+                messageDiv.style.backgroundColor = "#d32f2f";
+            }
+            document.body.appendChild(messageDiv);
+
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 3000);
+        }
+
+        function updateCartIcon() {
+            const basket = JSON.parse(localStorage.getItem("data")) || [];
+            const cartAmount = basket.reduce((total, item) => total + item.item, 0);
+            const cartIcon = document.getElementById("cartAmount");
+            if (cartIcon) cartIcon.textContent = cartAmount;
+        }
+
+        updateCartIcon();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const header = document.querySelector("header");
+            const sidebarBanner = document.querySelector(".sidebar-banner");
+
+            function updateSidebarBanner() {
+                const headerHeight = header.offsetHeight;
+                sidebarBanner.style.top = `${headerHeight}px`;
+                sidebarBanner.style.height = `calc(100vh - ${headerHeight}px)`;
+            }
+
+            updateSidebarBanner();
+            window.addEventListener("resize", updateSidebarBanner);
+        });
+    </script>
+    <style>
+        /* Styl dla kontenera przycisków w rzędzie */
+        .action-buttons-row {
+            display: flex;
+            flex-direction: row; /* Przyciski w rzędzie */
+            gap: 15px; /* Odstęp między przyciskami */
+            flex-wrap: wrap; /* Zawijanie na mniejszych ekranach */
+            justify-content: space-between; /* Równomierne rozłożenie przycisków */
+            margin-top: 20px; /* Odstęp od góry */
+        }
+
+        /* Styl dla przycisków akcji produktu */
+        .product-action-button {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: "Quicksand", sans-serif;
+            transition: all 0.3s ease;
+            flex: 0 0 calc(33.33% - 10px); /* Każdy przycisk zajmuje dokładnie 1/3 szerokości minus odstępy */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px; /* Odstęp między ikoną a tekstem */
+        }
+
+        /* Responsywność dla mniejszych ekranów */
+        @media (max-width: 768px) {
+            .action-buttons-row {
+                flex-direction: column; /* Przyciski w kolumnie na mniejszych ekranach */
+                align-items: stretch; /* Przyciski rozciągają się na całą szerokość */
+            }
+
+            .product-action-button {
+                flex: 0 0 100%; /* Pełna szerokość na małych ekranach */
+            }
+        }
+    </style>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93b267c30ff1badd',t:'MTc0NjQ3MDgzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93b278b29c8e53ec',t:'MTc0NjQ3MTUyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93b27feecf9b457b',t:'MTc0NjQ3MTgyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93b2e6341cb2bf72',t:'MTc0NjQ3NjAxNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

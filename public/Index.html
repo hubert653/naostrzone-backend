@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naostrzone | Sklep internetowy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="obrazy/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <header>
+        <button class="hamburger-button" aria-label="Otwórz menu">☰</button>
+        <div class="logo-container">
+            <img src="obrazy/favicon.png" alt="Logo sklepu" class="logo">
+            <span class="tagline">
+                <span class="tagline-part1">Naostrzone</span>
+                <span class="tagline-part2"> | Akcesoria dla twojej kuchni</span>
+            </span>
+        </div>
+        <div class="search-bar-container">
+            <form class="search-form" action="Produkty.html" method="GET">
+                <input type="text" name="search" placeholder="Wyszukaj produkty" class="search-input">
+                <button type="submit" class="search-button">Szukaj</button>
+            </form>
+        </div>
+        <nav>
+            <ul>
+                <li id="account-link"><a href="Moje Konto.html">Moje Konto</a></li>
+                <li id="user-info" style="display: none;">
+                    <img src="obrazy/user-icon.png" alt="User Icon" class="user-icon">
+                    <span id="user-email"></span>
+                    <button id="logout-button" class="logout-button">Wyloguj</button>
+                </li>
+                <li><a href="Produkty.html">Produkty</a></li>
+                <li><a href="Kontakt.html">Kontakt</a></li>
+                <a href="Koszyk.html">
+                    <div class="cart">
+                      <i class="bi bi-cart2"></i>
+                      <div id="cartAmount" class="cartAmount">0</div>
+                    </div>
+                </a>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <i class="bi bi-moon-fill"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    <div class="hamburger-overlay">
+        <div class="hamburger-header">
+            <h2>Menu</h2>
+            <button class="close-hamburger" aria-label="Zamknij menu">×</button>
+        </div>
+        <ul class="hamburger-items">
+            <li id="user-info-mobile">
+                <li id="account-link"><a href="Moje Konto.html">Moje Konto</a></li>
+            </li>
+            <li><a href="produkty.html">Produkty</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+    </div>
+    </header>
+
+    <main>
+        <div id="container">
+        <div class="photobanner">
+            <img src="obrazy/2.png" alt="baner2" />
+            <img src="obrazy/1.png" alt="baner1" />
+            <img src="obrazy/3.png" alt="baner3" />
+            <img src="obrazy/Baner7.png" alt="baner3" />
+        </div>
+        <section id="why-choose-us">
+            <h2><strong>Dlaczego warto kupować w Naostrzone?</strong></h2>
+            <div class="features-container">
+                <div class="feature">
+                    <img src="obrazy/dostawa.jpg" alt="Szybka dostawa">
+                    <h3>SZYBKA</h3>
+                    <p>czas dostawy do 48h</p>
+                </div>
+                <div class="feature">
+                    <img src="obrazy/promocje.jpg" alt="Promocje">
+                    <h3>PROMOCJE</h3>
+                    <p>asortymentowe</p>
+                </div>
+                <div class="feature">
+                    <img src="obrazy/zwrot2.png" alt="Zwroty">
+                    <h3>14 DNI</h3>
+                    <p>na zwrot towaru</p>
+                </div>
+                <div class="feature">
+                    <img src="obrazy/portfel.jpg" alt="Metody płatności">
+                    <h3>WIELE</h3>
+                    <p>metod płatności</p>
+                </div>
+                <div class="feature">
+                    <img src="obrazy/odbior.png" alt="Odbiór osobisty">
+                    <h3>ODBIÓR</h3>
+                    <p>osobisty</p>
+                </div>
+                <div class="feature">
+                    <img src="obrazy/telefon.jpg" alt="Zamówienia telefoniczne">
+                    <h3>ZAMÓWIENIA</h3>
+                    <p>telefoniczne</p>
+                </div>
+            </div>
+        </section>
+        </div>
+<br><br>
+<section class="mosaic-section">
+  <div class="mosaic-container">
+    <!-- Lewa część - Informacje o firmie -->
+    <div class="mosaic-item left">
+      <div class="mosaic-text">
+        <h3>Nasza Misja i Wartości</h3>
+        <p>Jesteśmy firmą, która z pasją dostarcza najwyższej jakości akcesoria kuchenne, aby uczynić gotowanie przyjemnym i efektywnym doświadczeniem. Nasza misja to inspirowanie kulinarnych pasjonatów poprzez oferowanie precyzyjnych narzędzi, takich jak japońskie noże, które łączą tradycję z nowoczesnością. Cenimy jakość, innowacyjność i dbałość o szczegóły – każdy produkt jest starannie wyselekcjonowany, aby sprostać oczekiwaniom nawet najbardziej wymagających klientów.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<br><br>
+        <h1><strong>Nasze Bestsellery</strong></h1><br>
+        <div class="products-container">
+            <!-- Produkt 1 -->
+            <div class="product-card">
+                <img src="produkty/1.jpeg" alt="Nóż szefa Santoku Kaze">
+                <h3>Nóż szefa Santoku Kaze</h3>
+                <p>Twórz kulinarne arcydzieła z nożem, który łączy perfekcję rzemiosła z niezawodną ostrością.</p>
+                <a href="/Product.html?id=1">Zobacz więcej</a>
+            </div>
+        
+            <!-- Produkt 2 -->
+            <div class="product-card">
+              <img src="produkty/2.jpeg" alt="Nóż do chleba Kirinowaka">
+              <h3>Nóż do chleba Kirinowaka</h3>
+              <p>Poznaj wszechstronny nóż, który stał się ulubieńcem szefów kuchni na całym świecie.
+                 Doskonały do krojenia, siekania i filetowania – stworzony dla perfekcjonistów. Raz go użyjesz, a nie będziesz chciał wrócić do zwykłych noży.</p>
+                 <a href="/Product.html?id=2">Zobacz więcej</a>
+            </div>
+        
+            <!-- Produkt 3 -->
+            <div class="product-card">
+              <img src="produkty/3.png" alt="Garnek stalowy Nabe Tsuki">
+              <h3>Garnek stalowy Nabe Tsuki</h3>
+              <p>Ostre jak samurajski miecz, lekkie jak powiew wiatru – ten nóż to prawdziwy klejnot w kuchni.
+                 Idealny do szybkiego krojenia warzyw, mięsa czy ryb. Twoja kuchnia zasługuje na coś wyjątkowego!</p>
+                 <a href="/Product.html?id=3">Zobacz więcej</a>
+            </div>
+        
+            <!-- Produkt 4 -->
+            <div class="product-card">
+              <img src="produkty/4.jpg" alt="Garnek emaliowany Nabe Sakura">
+              <h3>Garnek emaliowany Nabe Sakura</h3>
+              <p>Filetowanie jeszcze nigdy nie było tak łatwe! Ten nóż gwarantuje nieskazitelną precyzję przy każdym cięciu,
+                 idealny dla miłośników ryb i delikatnego mięsa. Dodaj odrobinę luksusu do swojej kuchni!</p>
+                 <a href="/Product.html?id=4">Zobacz więcej</a>
+            </div>
+          </div>
+<br><br><br>
+
+<section class="customer-reviews">
+    <h2>Opinie naszych klientów</h2>
+    
+    <div class="reviews-container">
+  
+      <!-- Opinia 1 -->
+      <div class="review-card">
+        <p class="review-text">"Absolutnie najlepszy nóż w mojej kolekcji!"</p>
+        <p class="review-author">- Jakub S.</p>
+        <div class="review-rating">★★★★★</div>
+      </div>
+  
+      <!-- Opinia 2 -->
+      <div class="review-card">
+        <p class="review-text">"Idealny do filetowania ryb, polecam każdemu!"</p>
+        <p class="review-author">- Anna M.</p>
+        <div class="review-rating">★★★★★</div>
+      </div>
+  
+      <!-- Opinia 3 -->
+      <div class="review-card">
+        <p class="review-text">"Rewelacyjna ostrość, praca w kuchni stała się przyjemnością."</p>
+        <p class="review-author">- Marek J.</p>
+        <div class="review-rating">★★★★★</div>
+      </div>
+  
+      <!-- Opinia 4 -->
+      <div class="review-card">
+        <p class="review-text">"Jakość wykonania i design na najwyższym poziomie."</p>
+        <p class="review-author">- Katarzyna W.</p>
+        <div class="review-rating">★★★★★</div>
+      </div>
+  
+    </div>
+  </section>
+        
+        <h2>Najpopularniejsze kategorie w naszym sklepie</h2>
+        <section class="icon-row">
+            <a href="Produkty.html?category=Przybory kuchenne" class="icon-link">
+                <img src="obrazy/przybory.jpeg" alt="Przybory kuchenne" class="icon">
+                <p>Przybory kuchenne</p>
+            </a>
+            <a href="Produkty.html?category=Patelnie" class="icon-link">
+                <img src="obrazy/patelnie.jpg" alt="Patelnie" class="icon">
+                <p>Patelnie</p>
+            </a>
+            <a href="Produkty.html?category=Noże" class="icon-link">
+                <img src="obrazy/noże.jpg" alt="Noże" class="icon">
+                <p>Noże</p>
+            </a>
+            <a href="Produkty.html?category=Garnki" class="icon-link">
+                <img src="obrazy/garnki.webp" alt="Garnki" class="icon">
+                <p>Garnki</p>
+            </a>
+        </section>
+          <!-- Elfsight AI Chatbot | Naostrzone Chatbot -->
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
+<div class="elfsight-app-127b93b1-c94d-4bff-b53a-c07a586ab75d" data-elfsight-app-lazy></div>
+    </main>
+
+    <footer id="kontakt">
+        <section id="newsletter-bar">
+            <div class="newsletter-content">
+                <img src="obrazy/newsletter.gif" alt="Rabaty" class="newsletter-gif">
+                <div class="newsletter-text">
+                    <h2>Rabaty dla subskrybentów!</h2>
+                    <p>Zapisz sie na newsletter i otrzymuj najnowsze okazje!</p>
+                </div>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Twój e-mail *" required>
+                    <button type="submit">ZAPISZ MNIE DO ZNIŻEK</button>
+                </form>
+            </div>
+            <p class="newsletter-info">
+                Zapisujac sie na newsletter, zgadzasz sie na przetwarzanie Twoich danych osobowych w celu przesylania wiadomosci marketingowych i ofert promocyjnych.
+            </p>
+        </section>
+        <p>Kontakt: <a href="mailto:naostrzone@sklep.pl">naostrzone@sklep.pl</a> | Telefon: 536 248 284</p>
+    </footer>
+    <script>
+    const hamburgerButton = document.querySelector('.hamburger-button');
+    const hamburgerOverlay = document.querySelector('.hamburger-overlay');
+    const closeHamburgerButton = document.querySelector('.close-hamburger');
+
+    hamburgerButton.addEventListener('click', () => {
+        hamburgerOverlay.classList.add('show');
+    });
+
+    closeHamburgerButton.addEventListener('click', () => {
+        hamburgerOverlay.classList.remove('show');
+    });
+
+    // Zamykanie menu po kliknięciu w link
+    document.querySelectorAll('.hamburger-items a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburgerOverlay.classList.remove('show');
+        });
+    });
+</script>
+    <script src="script.js"></script>
+    <script src="main.js"></script>
+    <script src="cart.js"></script>
+    <script src="newsletter.js"></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naostrzone | Sklep internetowy</title>
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="account.css">
+    <link rel="icon" href="obrazy/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="obrazy/favicon.png" alt="Logo sklepu" class="logo">
+            <span class="tagline">Naostrzone | Akcesoria dla twojej kuchni</span>
+            <div class="search-bar-container">
+                <form class="search-form" action="#" method="GET">
+                    <input type="text" name="search" placeholder="Wyszukaj produkty" class="search-input">
+                    <button type="submit" class="search-button">Szukaj</button>
+                </form>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li id="user-info" style="display: none;">
+                    <img src="obrazy/user-icon.png" alt="User Icon" class="user-icon">
+                    <span id="user-email"></span>
+                    <button id="logout-button" class="logout-button">Wyloguj się</button>
+                </li>
+                <li><a href="Index.html">Strona Główna</a></li>
+                <li><a href="Produkty.html">Produkty</a></li>
+                <li><a href="Kontakt.html">Kontakt</a></li>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <i class="bi bi-moon-fill"></i> Ciemny motyw
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="login-register-section" id="login-register-section">
+            <div class="login-container">
+                <h2>Logowanie</h2>
+                <form class="login-form">
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" placeholder="Wprowadź e-mail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Hasło *</label>
+                        <div class="password-container">
+                            <input type="password" id="password" name="password" placeholder="Wprowadź hasło" required>
+                            <a href="#" class="show-password">Pokaż hasło</a>
+                        </div>
+                    </div>
+                    <a href="#" class="forgot-password">Nie pamiętam hasła</a>
+                    <button type="submit" class="login-button">ZALOGUJ SIĘ</button>
+                </form>
+            </div>
+            <div class="register-container">
+                <h2>Nowy klient</h2>
+                <p>Załóż konto w naszym sklepie i zyskaj dostęp do:</p>
+                <ul class="benefits-list">
+                    <li>✔ Szybki proces zamawiania</li>
+                    <li>✔ Pełna historia wszystkich zamówień</li>
+                    <li>✔ Specjalne kody rabatowe</li>
+                    <li>✔ Dostęp do unikalnych promocji</li>
+                </ul><br><br>
+                <a href="Rejestracja.html"><button type="button" class="login-button">ZAŁÓŻ KONTO</button></a>
+            </div>
+        </section>
+
+        <section class="user-details-section" id="user-details-section" style="display: none;">
+            <h2>Witaj<span id="greeting-comma" style="display: none;">,</span> <span id="user-name"></span>!</h2>
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="profile">Profil</button>
+                <button class="tab-button" data-tab="orders">Historia zamówień</button>
+                <button class="tab-button" data-tab="wishlist">Lista życzeń</button>
+                <button class="tab-button" data-tab="settings">Ustawienia</button>
+<button class="tab-button" data-tab="admin" id="admin-tab-button">Panel admina</button>            </div>
+
+            <div class="tab-content active" id="profile-tab">
+                <h3>Informacje o użytkowniku</h3><br>
+                <div class="user-info" style="display: none;">
+                    <p>E-mail: <span id="user-email-details"></span></p>
+                    <p>Imię: <span id="user-firstname">Brak danych</span></p>
+                    <p>Nazwisko: <span id="user-lastname">Brak danych</span></p>
+                    <p>Adres: <span id="user-address">Brak danych</span></p>
+                    <button id="edit-profile-button" class="edit-profile-button" style="display: none;">Zmień dane</button>
+                </div>
+                <form id="profile-form">
+                    <p class="profile-message">Prosimy o uzupełnienie danych, aby móc w pełni korzystać z konta.</p>
+                    <div class="form-group">
+                        <label for="firstname">Imię</label>
+                        <input type="text" id="firstname" name="firstname" placeholder="Wprowadź imię">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Nazwisko</label>
+                        <input type="text" id="lastname" name="lastname" placeholder="Wprowadź nazwisko">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Adres</label><br>
+                        <textarea type="address" id="address" name="address" placeholder="Wprowadź adres"></textarea>
+                    </div>
+                    <button type="submit" class="action-button">Zapisz zmiany</button>
+                </form>
+            </div>
+
+            <div class="tab-content" id="orders-tab">
+                <h3>Historia zamówień</h3><br><br>
+                <ul id="order-history"></ul>
+            </div>
+
+            <div class="tab-content" id="wishlist-tab">
+                <h3>Lista życzeń</h3>
+                <div id="wishlist-items"></div>
+            </div>
+
+            <div id="settings-tab" class="tab-content">
+    <h2>Ustawienia konta</h2>
+    <form id="password-form">
+        <div class="form-group">
+            <label for="current-password">Aktualne hasło</label>
+            <input type="password" id="current-password" name="current-password" required>
+        </div>
+        <div class="form-group">
+            <label for="new-password">Nowe hasło</label>
+            <input type="password" id="new-password" name="new-password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm-new-password">Potwierdź nowe hasło</label>
+            <input type="password" id="confirm-new-password" name="confirm-new-password" required>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <button type="submit">Zmień hasło</button>
+        </div>
+    </form>
+</div>
+            <div class="tab-content" id="admin-tab" style="display: none;">
+                <h2>Panel Administratora</h2><br><br>
+                <h3>Dodaj nowy produkt</h3><br><br>
+                <form id="add-product-form">
+                    <div class="form-group">
+                        <label for="product-name">Nazwa produktu:</label>
+                        <input type="text" id="product-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Cena (zł):</label>
+                        <input type="number" id="product-price" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-description">Opis:</label>
+                        <textarea id="product-description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-image">Ścieżka do obrazu:</label>
+                        <input type="text" id="product-image" placeholder="np. obrazy/produkt.jpg" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-category">Kategoria:</label>
+                        <input type="text" id="product-category" placeholder="np. Noże">
+                    </div>
+                    <button type="submit" class="action-button">Dodaj produkt</button>
+                </form><br><br><br>
+
+                <h3>Zarządzaj produktami</h3><br>
+                <div id="product-list"></div>
+            </div>
+        </section>
+    </main>
+ <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    <div class="elfsight-app-127b93b1-c94d-4bff-b53a-c07a586ab75d" data-elfsight-app-lazy></div>
+    <footer id="kontakt">
+        <section id="newsletter-bar">
+            <div class="newsletter-content">
+                <img src="obrazy/newsletter.gif" alt="Rabaty" class="newsletter-gif">
+                <div class="newsletter-text">
+                    <h2>Rabaty dla subskrybentów!</h2>
+                    <p>Zapisz sie na newsletter i otrzymuj najnowsze okazje!</p>
+                </div>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Twój e-mail *" required>
+                    <button type="submit">ZAPISZ MNIE DO ZNIŻEK</button>
+                </form>
+            </div>
+            <p class="newsletter-info">
+                Zapisujac sie na newsletter, zgadzasz sie na przetwarzanie Twoich danych osobowych w celu przesylania wiadomosci marketingowych i ofert promocyjnych.
+            </p>
+        </section>
+        <p>Kontakt: <a href="mailto:naostrzone@sklep.pl">naostrzone@sklep.pl</a> | Telefon: 536 248 284</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+    <script src="main.js"></script>
+    <script src="account.js"></script>
+    <script src="newsletter.js"></script>
+
+</body>
+</html>

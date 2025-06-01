@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naostrzone | Sklep internetowy</title>
+    <link rel="stylesheet" href="Style.css"> <!-- Łączenie pliku CSS -->
+    <link rel="icon" href="obrazy/favicon.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="obrazy/favicon.png" alt="Logo sklepu" class="logo">
+            <span class="tagline">Naostrzone | Akcesoria dla twojej kuchni</span>
+            <div class="search-bar-container">
+            <form class="search-form" action="#" method="GET">
+                <input type="text" name="search" placeholder="Wyszukaj produkty..." class="search-input">
+                <button type="submit" class="search-button">Szukaj</button>
+            </form>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li id="account-link"><a href="Moje Konto.html">Moje Konto</a></li>
+                <li id="user-info" style="display: none;">
+                    <img src="obrazy/user-icon.png" alt="User Icon" class="user-icon">
+                    <span id="user-email"></span>
+                    <button id="logout-button" class="logout-button">Wyloguj</button>
+                </li>
+                <li><a href="Index.html">Strona główna</a></li>
+                <li><a href="Produkty.html">Produkty</a></li>
+                <a href="Koszyk.html">
+                    <div class="cart">
+                      <i class="bi bi-cart2"></i>
+                      <div id="cartAmount" class="cartAmount">0</div>
+                    </div>
+                </a>
+                <li>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <i class="bi bi-moon-fill"></i> Ciemny motyw
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        
+    </header>
+    <main>
+        <section class="faq-section">
+            <h2>Sprawdź najczęściej zadawane pytania lub skontaktuj się z nami.</h2>
+            <div class="contact-container">
+                <div class="left2">KONTAKT</div>
+                <div class="right2" style="text-align: left;">
+                    <div class="contact-item">
+                        <button class="contact-button">TELEFON</button>
+                        <span class="contact-info">(12) 442 7 442</span>
+                    </div>
+                    <div class="contact-item">
+                        <button class="contact-button">MAIL</button>
+                        <span class="contact-info">naostrzone@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-container">
+                <!-- Najczęściej zadawane pytania -->
+                <div class="faq-box">
+                    <h3>Najczęściej zadawane pytania</h3>
+                    <ul>
+                        <li><a href="Status zamowienia.html">Jak mogę sprawdzić status zamówienia?</a></li>
+                        <li><a href="Formy platnosci.html">Jakie są dostępne formy płatności?</a></li>
+                        <li><a href="Termin dostawy.html">Termin dostawy</a></li>
+                        <li><a href="Odbior sprzetu.html">Odbiór zużytego sprzętu</a></li>
+                        <li><a href="Dowod zakupu.html">Gdzie znajdę dowód zakupu?</a></li>
+                        <li><a href="Zamowienie na raty.html">Jak złożyć zamówienie na raty?</a></li>
+                    </ul>
+                </div>
+        
+                <!-- Zapytaj przez formularz -->
+                <div class="faq-box">
+                    <h3>Zapytaj przez formularz</h3>
+                    <p>Wypełnij jeden z naszych formularzy pomocy, aby uzyskać odpowiedź na Twoje pytania.</p><br>
+                    <button class="action-button" onclick="window.location.href='Formularz pomocy.html';">Wypełnij formularz pomocy</button>
+                </div>
+        
+                <!-- Zwroty -->
+                <div class="faq-box">
+                    <h3>Zwroty</h3>
+                    <p>W ciągu 14 dni możesz zwrócić produkt zakupiony na odległość.</p><br>
+                    <button class="action-button" onclick="window.location.href='Zwroty.html';">Dowiedz się więcej</button>
+                </div>
+        
+                <!-- Reklamacje -->
+                <div class="faq-box">
+                    <h3>Reklamacje</h3>
+                    <p>Możesz złożyć reklamację na produkt, usługę lub dostawę.</p><br>
+                    <button class="action-button" onclick="window.location.href='Reklamacje.html';">Dowiedz się więcej</button>
+                </div>
+            </div>
+        </section>
+        </section>
+          <!-- Elfsight AI Chatbot | Naostrzone Chatbot -->
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
+<div class="elfsight-app-127b93b1-c94d-4bff-b53a-c07a586ab75d" data-elfsight-app-lazy></div>
+    </main>
+    <footer id="kontakt">
+        <section id="newsletter-bar">
+            <div class="newsletter-content">
+                <img src="obrazy/newsletter.gif" alt="Rabaty" class="newsletter-gif">
+                <div class="newsletter-text">
+                    <h2>Rabaty dla subskrybentów!</h2>
+                    <p>Zapisz sie na newsletter i otrzymuj najnowsze okazje!</p>
+                </div>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Twój e-mail *" required>
+                    <button type="submit">ZAPISZ MNIE DO ZNIŻEK</button>
+                </form>
+            </div>
+            <p class="newsletter-info">
+                Zapisujac sie na newsletter, zgadzasz sie na przetwarzanie Twoich danych osobowych w celu przesylania wiadomosci marketingowych i ofert promocyjnych.
+            </p>
+        </section>
+        <p>Kontakt: <a href="mailto:naostrzone@sklep.pl">naostrzone@sklep.pl</a> | Telefon: 536 248 284</p>
+    </footer>
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+    <script src="main.js"></script>
+    <script src="newsletter.js"></script>
+</body>
+</html>
