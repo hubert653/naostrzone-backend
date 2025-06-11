@@ -7,23 +7,29 @@ let generateShop = async () => {
     if (!shop) return;
 
     try {
-        const response = await fetch("http://localhost:3000/api/products");
+        const response = await fetch('/api/products'); // Correct endpoint
         if (!response.ok) {
-            throw new Error("Błąd podczas pobierania danych z API");
+            throw new Error("Błąd podczas pobierania danych z API: " + response.statusText);
         }
         const shopItemsData = await response.json();
 
+        // Check if data is received
+        if (!shopItemsData || shopItemsData.length === 0) {
+            shop.innerHTML = "<p>Brak produktów do wyświetlenia.</p>";
+            return;
+        }
+
         shop.innerHTML = shopItemsData
             .map((x) => {
-                let { id, name, price, streszczenie, img, category } = x;
+                let { id, name, price, description, img, category } = x;
                 return `
-                    <div id="product-id-${id}" class="item product" data-category="${category}">
-                        <img width="220" src="${img}" alt="">
+                    <div id="product-id-${id}" class="item product" data-category="${category || ''}">
+                        <img width="220" src="${img || 'default-image.jpg'}" alt="${name}">
                         <div class="details">
                             <h3><a href="/Product.html?id=${id}">${name}</a></h3>
-                            <p>${streszczenie}</p>
+                            <p>${description || ''}</p>
                             <div class="price-quantity">
-                                <h2 class="product-price">${price} zł</h2>
+                                <h2 class="product-price">${price || 0} zł</h2>
                                 <div class="buttons">
                                     <i onclick="decrement('${id}')" class="bi bi-dash-lg"></i>
                                     <div id="quantity-${id}" class="quantity">0</div>
